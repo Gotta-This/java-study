@@ -21,3 +21,40 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#eclipse配置
+*.project
+*.classpath
+*.metadata/
+*.recommenders/
+*.settings/
+
+#idea配置
+*.idea/
+IDEA.iml
+
+#server
+*Servers/
+
+#MACOS生成文件夹
+*__MACOSX/
+*.DS_Store
+
+#npm下载包
+*node_modules/
+*/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+
+
