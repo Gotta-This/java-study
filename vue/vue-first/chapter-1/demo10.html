@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义事件</title>
+</head>
+<body>
+<div id="app">
+    <!-- 不使用vue做会是这样的，而且数据是写死在dom里的 -->
+    <p>列表书籍</p>
+    <ul>
+        <li>Java</li>
+        <li>Linux</li>
+        <li>Python</li>
+    </ul>
+    <!-- 使用插槽以及组件 -->
+    <todo>
+        <todo-title slot="todo-title" :title="title"></todo-title>
+        <todo-items slot="todo-items" v-for="(item,index) in todoItems" :item="item" v-bind:index="index" v-on:remove="removeItems(index)"></todo-items>
+    </todo>
+</div>
+
+
+
+
+<script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+<script>
+    /*
+    通过以上的代码不难发现，数据项在vue的实例中，但删除操作要在组件中完成
+    那么组件如何才能删除vue实例中的数据呢？此时就设计到参数传递与事件分发了
+    vue为我们提供了自定义事件的功能很好的帮组我们解决了这个问题，使用this.$emit('自定义事件名',参数)
+     */
+    Vue.component("todo",{
+        template:'<div>\
+                        <slot name="todo-title"></slot>\
+                        <ul>\
+                            <slot name="todo-items"></slot>\
+                        </ul>\
+                    </div>'
+    });
+    Vue.component("todo-title",{
+        props:['title'],
+        template: '<div>{{title}}</div>'
+    });
+    Vue.component("todo-items",{
+        props: ['item','index'],
+        //只能绑定当前组件的方法
+        template: '<li>{{index}}---{{item}}<button @click="remove">删除</button></li>',
+        //如何实现删除其中的一项？组件中如何调vue里的方法而且把vm中的东西删除掉？
+        methods:{
+            remove:function (index){
+                //自定义事件分发this.$emit
+                this.$emit('remove',index);
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            title:"langluage",
+            todoItems:['Java','Python','Go']
+        },
+        methods: {
+            removeItems:function (index){
+                console.log("删除了"+this.todoItems[index]);
+                this.todoItems.splice(index,1);//一次删除一个元素
+            }
+        }
+    });
+</script>
+</body>
+</html>

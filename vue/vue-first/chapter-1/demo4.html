@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击事件</title>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="sayHi">点击</button>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"sayHi方法的输出message"
+        },
+        methods:{
+            //方法必须定义在methods中
+            sayHi:function(){
+                alert(this.message);
+            }
+        }
+    });
+</script>
+</html>

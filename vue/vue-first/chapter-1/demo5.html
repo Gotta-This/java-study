@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定</title>
+</head>
+<body>
+<div id="app">
+    <p>试一个文本框</p>
+    输入的文本：<input type="text" v-model="message"> {{message}}
+    <br>
+    <!-- 当往input框里输入东西的时候，后面的文字会实时更新    双向绑定-->
+    <p>再尝试一个textarea</p>
+    <textarea name="" id="" cols="30" rows="10" v-model="textarea"></textarea>{{textarea}}
+    <br>
+    <p>再来一个radio：</p>
+    性别：
+    <input type="radio" name="sex" value="男" checked="" v-model="sex">男
+    <input type="radio" name="sex" value="女" v-model="sex">女
+    <p>选中了谁：{{sex}}</p>
+    <p>再来一个下拉框：</p>
+    下拉框：
+    <select name="" id="" v-model="selected">
+        <option value="" disabled>请选择..</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+    </select>
+    <span>Value:{{selected}}</span>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"123",
+            textarea:"",
+            checked:true,
+            sex:"",
+            selected:""
+        }
+    });
+</script>
+</html>

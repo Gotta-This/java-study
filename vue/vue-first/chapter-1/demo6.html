@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue组件</title>
+</head>
+<body>
+<!-- VUE组件 -->
+<div id="app">
+    <zujian v-for="item in items" v-bind:out="item"></zujian>
+</div>
+
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+<script>
+    //定义一个vue组件component
+    Vue.component("zujian",{
+        props: ['out'],
+        template:'<li>{{out}}</li>'
+    });
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            items:["Java","Linux","前端"]
+        }
+    });
+</script>
+</body>
+</html>
