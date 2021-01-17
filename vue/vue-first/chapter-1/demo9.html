@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slot-插槽</title>
+</head>
+<body>
+<div id="app">
+    <!-- 不使用vue做会是这样的，而且数据是写死在dom里的 -->
+    <p>列表书籍</p>
+    <ul>
+        <li>Java</li>
+        <li>Linux</li>
+        <li>Python</li>
+    </ul>
+    <!-- 使用插槽以及组件 -->
+    <todo>
+        <todo-title slot="todo-title" :title="title"></todo-title>
+        <todo-items slot="todo-items" v-for="item in todoItems" :item="item"></todo-items>
+    </todo>
+</div>
+
+
+
+
+<script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+<script>
+    //slot:插槽
+    Vue.component("todo",{
+        template:'<div>\
+                        <slot name="todo-title"></slot>\
+                        <ul>\
+                            <slot name="todo-items"></slot>\
+                        </ul>\
+                    </div>'
+    });
+    Vue.component("todo-title",{
+        props:['title'],
+        template: '<div>{{title}}</div>'
+    });
+    Vue.component("todo-items",{
+        props: ['item'],
+        template: '<li>{{item}}</li>'
+    });
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            title:"langluage",
+            todoItems:['Java','Python','Go']
+        }
+    });
+    /*
+    js6新特性：以前是需要
+        '<div>' +
+            '<slot></slot>' +
+            '<ul>' +
+                '<slot></slot>' +
+            '</ul>' +
+        '</div>'
+    但现在在后面加一个斜杠就好了
+        '<div>\
+            <slot></slot>\
+            <ul>\
+                <slot></slot>\
+            </ul>\
+        </div>'
+    */
+</script>
+</body>
+</html>

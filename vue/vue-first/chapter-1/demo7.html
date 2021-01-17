@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>axios与vue</title>
+    <style>
+        [v-clock]{
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+<div id="vue" v-clock>
+    <div>{{info.name}}</div>
+    <div>{{info.age}}</div>
+    <div>{{info.cars.car1}}</div>
+    <a v-bind:href="info.url" >点击</a>
+</div>
+
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#vue",
+        //之前的data是vm中的一个属性 还有一个叫data方法
+        data(){
+            return{
+                //返回的请求参数格式必须和json字符串一样
+                info:{
+                    name:null,
+                    age:null,
+                    cars:{
+                        car1:null,
+                        car2:null,
+                        car3:null
+                    },
+                    url:null
+                }
+            }
+        },
+        mounted(){//钩子函数  链式编程   ES6的新特性
+            axios.get('data.json').then(response=>(console.log(this.info=response.data)))
+        }
+    });
+</script>
+</body>
+</html>

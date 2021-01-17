@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for循环语句</title>
+</head>
+<body>
+<div id="app">
+    <li v-for="items in items">
+        {{items.message}}
+    </li>
+
+    <li v-for="(items , index) in items">
+        {{items.message}}----{{index}}
+    </li>
+</div>
+
+
+<script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            //一个数组 数组里有两个元素
+            items:[
+                {message:"学习1"},
+                {message:"学习2"}
+            ]
+        }
+    });
+</script>
+</body>
+</html>

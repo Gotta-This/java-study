@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+</head>
+<body>
+<div id="app">
+    <p>currentTime1:{{currentTime1()}}</p>
+    <p>currentTime2:{{currentTime2}}</p>
+</div>
+
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:'hello,vue'
+        },
+        methods:{//方法
+            currentTime1:function(){
+                return Date.now();//返回当前时间戳
+            }
+            //在页面的console中输入vm.currentTime1()输出的时间是会变化的，而计算属性是一个属性，只能用vm.currentTime2来调用，而值不会改变
+        },
+        computed:{//计算属性，methods和computed中的方法名不能重复，重名之后只会调用methods中的方法
+            currentTime2:function(){
+                this.message;//就像一个缓存一样，这个方法返回的值一般不会改变，但当方法中其他东西发生变化时，方法就会重新进行计算，值就会发生改变
+                return Date.now();//返回当前时间戳
+                //调用方法时，每次都需要进行计算，既然有计算过程则必定产生系统开销，那如果这个结果是不经常发生变化的，这时候就可以考虑将这个结果缓存下来
+                //采用计算属性可以很方便的做到这一点，
+                //计算属性的主要特征就是为了将不经常发生变化的计算结果进行缓存，以节约我们的系统开销
+            }
+        }
+    });
+</script>
+</body>
+</html>
