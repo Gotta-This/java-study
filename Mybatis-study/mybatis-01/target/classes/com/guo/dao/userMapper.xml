@@ -26,4 +26,8 @@
     <delete id="deleteUser" parameterType="int">
         delete from mybatis.user where id = #{id};
     </delete>
+
+    <insert id="addMap" parameterType="map">
+        insert into user(id, name, pwd) values(#{userId},#{userName},#{userPassword});
+    </insert>
 </mapper>
