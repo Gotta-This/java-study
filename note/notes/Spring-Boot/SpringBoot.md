@@ -178,6 +178,78 @@ public class HelloController {
 
 3、编写完毕后，从主程序启动项目，浏览器发起请求，看页面返回；控制台输出了 Tomcat 访问的端口号！
 
+![](https://raw.githubusercontent.com/Gotta-This/pic/release_20210112/note/pics/20210127174716.png)
+
 简单几步，就完成了一个web接口的开发，SpringBoot就是这么简单。所以我们常用它来建立我们的微服务项目！
 
 ## 5. 将项目打成jar包，点击 maven的 package
+
+成功图：
+
+![](https://raw.githubusercontent.com/Gotta-This/pic/release_20210112/note/pics/20210127175137.png)
+
+如果打包成功，则会在target目录下生成一个 jar 包，打成了jar包后，就可以在任何地方运行了！OK
+
+
+
+
+
+
+
+# SpringBoot彩蛋
+
+## 1. Spring Boot自定义启动Banner
+
+如何更改启动时显示的字符拼成的字母，SpringBoot呢？也就是 banner 图案；
+
+只需一步：到项目下的 resources 目录下新建一个banner.txt 即可。
+
+图案可以到：https://www.bootschool.net/ascii 这个网站生成，然后拷贝到文件中即可！
+
+![](https://raw.githubusercontent.com/Gotta-This/pic/release_20210112/note/pics/20210127180102.png)
+
+
+
+
+
+# 遇到的问题以及解决
+
+## 1. Whitelabel Error Page
+
+![](https://raw.githubusercontent.com/Gotta-This/pic/release_20210112/note/pics/20210127174323.png)
+
+原因:程序只加载Application.java所在包及其子包下的内容
+
+当时包是这样创建的：
+
+![](https://raw.githubusercontent.com/Gotta-This/pic/release_20210112/note/pics/20210127174442.png)
+
+这样是错误的，需要把包移到Application.java所在包的内部：
+
+![](https://raw.githubusercontent.com/Gotta-This/pic/release_20210112/note/pics/20210127174559.png)
+
+再次访问我的http://localhost/hello(我把端口改为了80)，访问成功
+
+![](https://raw.githubusercontent.com/Gotta-This/pic/release_20210112/note/pics/20210127174716.png)
+
+## 2. 打包时可能遇到的错误
+
+![](https://raw.githubusercontent.com/Gotta-This/pic/release_20210112/note/pics/20210127175250.jpg)
+
+如果遇到以上错误，可以配置打包时 跳过项目运行测试用例
+
+```xml
+<!--在工作中,很多情况下我们打包是不想执行测试用例的
+    可能是测试用例不完事,或是测试用例会影响数据库数据
+    跳过测试用例执
+    -->
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <configuration>
+        <!--跳过项目运行测试用例-->
+        <skipTests>true</skipTests>
+    </configuration>
+</plugin>
+```
+
