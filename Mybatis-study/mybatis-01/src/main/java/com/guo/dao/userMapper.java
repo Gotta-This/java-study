@@ -3,6 +3,7 @@ package com.guo.dao;
 import com.guo.pojo.user;
 
 import java.util.List;
+import java.util.Map;
 
 public interface userMapper {
     //查询全部用户
@@ -15,5 +16,9 @@ public interface userMapper {
     int updateUser(user user);
     //删除一个用户
     void deleteUser(int id);
+
+    //map操作
+    //增
+    public void addMap(Map<String,Object> map);
 }
 

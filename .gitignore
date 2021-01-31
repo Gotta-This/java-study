@@ -56,5 +56,9 @@ yarn-error.log*
 *.njsproj
 *.sln
 
+#maven
+*.mvn/
+mvnw
+mvnw.cmd
 
 
