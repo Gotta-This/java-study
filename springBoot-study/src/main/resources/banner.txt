@@ -18,7 +18,7 @@
                    `=---='
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
          佛祖保佑       永无BUG
-${application.version}
-${application.formatted-version}
-${spring-boot.version}
-${spring-boot.formatted-version}
+application.version-----------------------${application.version}
+application.formatted-version-------------${application.formatted-version}
+spring-boot.version-----------------------${spring-boot.version}
+spring-boot.formatted-version-------------${spring-boot.formatted-version}
